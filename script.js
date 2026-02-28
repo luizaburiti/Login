@@ -47,8 +47,7 @@ try {
   msgLogin.textContent = "Login realizado com sucesso!";
   msgLogin.className = "mensagem sucesso";
   console.log("Usuário logado:", userCredential.user);
-//p ir p outra tela se der certo td
-  window.location.href = "dashboard.html"; // coloque aqui a página que quer abrir
+
 } catch (error) {
   msgLogin.textContent = "Erro no login: " + error.message;
   msgLogin.className = "mensagem erro";
@@ -89,8 +88,10 @@ cadastroForm.addEventListener("submit", async function(e){
 
 onAuthStateChanged(auth, (user) => {
   if (user) {
-    // Redireciona para a página após login
-    window.location.href = "dashboard.html";
+    console.log("Usuário está logado:", user.email);
+    //  vai p outra tela 
+    window.location.replace("dashboard.html"); 
+    // use replace() para não deixar a página de login no histórico
   } else {
     console.log("Nenhum usuário logado");
   }
