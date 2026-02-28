@@ -1,0 +1,135 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body{
+  min-height: 100vh;
+  background: linear-gradient(180deg, #0b2b45, #1c5072, #05253d);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+}
+
+body::before{
+  content: "";
+  position: absolute;
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(circle, #1f6aa1, transparent 70%);
+  top: 200px;
+  left: -150px;
+  filter: blur(80px);
+}
+
+body::after{
+  content: "";
+  position: absolute;
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, #0d3f66, transparent 70%);
+  bottom: -150px;
+  right: -150px;
+  filter: blur(90px);
+}
+
+.containerlogin{
+  width: 400px;
+  padding: 60px;
+  border-radius: 28px;
+
+  /* imagem de fundo */
+  background: 
+    linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,1)),
+    url("linda-noite-no-oceano-com-lua-cheia_104785-866.avif");
+
+  background-size: cover;      /* encaixa certinho */
+  background-position: center; /* centraliza */
+  background-repeat: no-repeat;
+
+  box-shadow: 0 15px 40px rgba(0,0,0,0.35);
+  border: 2px solid black;
+  color: white;
+  position: relative;
+  z-index: 2;
+}
+
+form{
+  display: none;
+}
+
+.titulo{
+  font-size: 22px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+.label{
+  font-size: 14px;
+  color: #ddd;
+  display: block;
+  text-align: left;
+  margin-bottom: 6px;
+}
+
+input{
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 25px;
+  border-radius: 12px;
+  border: none;
+  outline: none;
+  background: rgba(255,255,255,0.15);
+  color: white;
+}
+
+input::placeholder{
+  color: #ccc;
+}
+
+button{
+  width: 100%;
+  padding: 15px;
+  border-radius: 15px;
+  border: none;
+  margin-top: 20px;
+  background: linear-gradient(135deg, #6fd3ff, #5fe0c0);
+  color: #003;
+  font-size: 17px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover{
+  opacity: 0.9;
+}
+
+.troca{
+  margin-top: 20px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.troca span{
+  color: #6fd3ff;
+  cursor: pointer;
+  font-weight: bold;
+}
+.mensagem{
+  margin-top: 15px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.sucesso{
+  color: #5fe0c0;
+}
+
+.erro{
+  color: #ff6b6b;
+}
