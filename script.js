@@ -47,8 +47,6 @@ loginForm.addEventListener("submit", async function(e){
     msgLogin.className = "mensagem sucesso";
     console.log("Usuário logado:", userCredential.user);
 
-    // ✅ Redireciona apenas após login bem-sucedido
-    window.location.replace("dashboard.html"); 
   } catch (error) {
     msgLogin.textContent = "Erro no login: " + error.message;
     msgLogin.className = "mensagem erro";
@@ -93,4 +91,5 @@ onAuthStateChanged(auth, (user) => {
     console.log("Nenhum usuário logado");
   }
 });
+
 
