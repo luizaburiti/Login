@@ -42,15 +42,17 @@ loginForm.addEventListener("submit", async function(e){
     return;
   }
 
-  try {
-    const userCredential = await signInWithEmailAndPassword(auth, email, senha);
-    msgLogin.textContent = "Login realizado com sucesso!";
-    msgLogin.className = "mensagem sucesso";
-    console.log("Usuário logado:", userCredential.user);
-  } catch (error) {
-    msgLogin.textContent = "Erro no login: " + error.message;
-    msgLogin.className = "mensagem erro";
-  }
+try {
+  const userCredential = await signInWithEmailAndPassword(auth, email, senha);
+  msgLogin.textContent = "Login realizado com sucesso!";
+  msgLogin.className = "mensagem sucesso";
+  console.log("Usuário logado:", userCredential.user);
+//p ir p outra tela se der certo td
+  window.location.href = "dashboard.html"; // coloque aqui a página que quer abrir
+} catch (error) {
+  msgLogin.textContent = "Erro no login: " + error.message;
+  msgLogin.className = "mensagem erro";
+}
 });
 
 // ===== CADASTRO =====
@@ -94,3 +96,4 @@ onAuthStateChanged(auth, (user) => {
     console.log("Nenhum usuário logado");
   }
 });
+
