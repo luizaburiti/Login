@@ -206,6 +206,8 @@ button:hover{
     top: 100px;
     left: -100px;
     filter: blur(60px);
+    overflow-x: hidden;  /* esconde scroll horizontal */
+    overflow-y: hidden; 
   }
 
   body::after {
@@ -221,4 +223,5 @@ button:hover{
     padding: 30px 15px;
   }
 }
+
 
