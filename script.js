@@ -87,13 +87,11 @@ cadastroForm.addEventListener("submit", async function(e){
   }
 });
 
-// ===== MONITORAR ESTADO DE LOGIN (OPCIONAL) =====
 onAuthStateChanged(auth, (user) => {
   if (user) {
-    console.log("Usuário está logado:", user.email);
-    // Aqui você pode redirecionar ou mostrar algo diferente
+    // Redireciona para a página após login
+    window.location.href = "dashboard.html";
   } else {
     console.log("Nenhum usuário logado");
   }
 });
-
