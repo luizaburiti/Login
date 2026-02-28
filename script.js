@@ -32,7 +32,6 @@ mostrarLogin();
 loginForm.addEventListener("submit", async function(e){
   e.preventDefault();
 
-  // ✅ Adicionado .trim() para remover espaços extras
   const email = document.getElementById("loginuser").value.trim();
   const senha = document.getElementById("loginpass").value;
 
@@ -42,16 +41,18 @@ loginForm.addEventListener("submit", async function(e){
     return;
   }
 
-try {
-  const userCredential = await signInWithEmailAndPassword(auth, email, senha);
-  msgLogin.textContent = "Login realizado com sucesso!";
-  msgLogin.className = "mensagem sucesso";
-  console.log("Usuário logado:", userCredential.user);
+  try {
+    const userCredential = await signInWithEmailAndPassword(auth, email, senha);
+    msgLogin.textContent = "Login realizado com sucesso!";
+    msgLogin.className = "mensagem sucesso";
+    console.log("Usuário logado:", userCredential.user);
 
-} catch (error) {
-  msgLogin.textContent = "Erro no login: " + error.message;
-  msgLogin.className = "mensagem erro";
-}
+    // ✅ Redireciona apenas após login bem-sucedido
+    window.location.replace("dashboard.html"); 
+  } catch (error) {
+    msgLogin.textContent = "Erro no login: " + error.message;
+    msgLogin.className = "mensagem erro";
+  }
 });
 
 // ===== CADASTRO =====
@@ -89,10 +90,8 @@ cadastroForm.addEventListener("submit", async function(e){
 onAuthStateChanged(auth, (user) => {
   if (user) {
     console.log("Usuário está logado:", user.email);
-    //  vai p outra tela 
-    window.location.replace("dashboard.html"); 
-    // use replace() para não deixar a página de login no histórico
   } else {
     console.log("Nenhum usuário logado");
   }
 });
+
