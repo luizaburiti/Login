@@ -32,7 +32,8 @@ mostrarLogin();
 loginForm.addEventListener("submit", async function(e){
   e.preventDefault();
 
-  const email = document.getElementById("loginuser").value;
+  // ✅ Adicionado .trim() para remover espaços extras
+  const email = document.getElementById("loginuser").value.trim();
   const senha = document.getElementById("loginpass").value;
 
   if (!email || !senha) {
@@ -56,7 +57,8 @@ loginForm.addEventListener("submit", async function(e){
 cadastroForm.addEventListener("submit", async function(e){
   e.preventDefault();
 
-  const email = document.getElementById("cadastroemail").value;
+  // ✅ Adicionado .trim() para remover espaços extras
+  const email = document.getElementById("cadastroemail").value.trim();
   const senha = document.getElementById("cadastropass").value;
 
   if (!email || !senha) {
@@ -65,7 +67,8 @@ cadastroForm.addEventListener("submit", async function(e){
     return;
   }
 
-  if (senha.length < 4) {
+  // Mantendo a validação de senha 6 caracteres
+  if (senha.length < 6) {
     msgCadastro.textContent = "A senha deve ter pelo menos 6 caracteres!";
     msgCadastro.className = "mensagem erro";
     return;
