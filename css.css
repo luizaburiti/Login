@@ -14,7 +14,21 @@ body{
   position: relative;
   overflow: hidden;
 }
+body {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px; /* garante espaço nas laterais em telas pequenas */
+  overflow-x: hidden; /* evita scroll horizontal */
+}
 
+/* Para o container login em telas pequenas */
+.containerlogin {
+  max-width: 400px;  /* não ultrapassa 400px no desktop */
+  width: 100%;       /* ocupa toda a largura disponível no mobile */
+  box-sizing: border-box;
+}
 body::before{
   content: "";
   position: absolute;
@@ -170,5 +184,19 @@ button:hover{
     width: 500px;
     height: 500px;
     filter: blur(70px);
+  }
+}
+@media (max-width: 500px) {
+  .containerlogin {
+    width: 90%;           /* ocupa quase toda a tela */
+    padding: 30px 20px;   /* menos padding interno */
+    border-radius: 20px;  
+  }
+
+  body::before,
+  body::after {
+    width: 400px;
+    height: 400px;
+    filter: blur(60px);
   }
 }
