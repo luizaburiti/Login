@@ -59,8 +59,7 @@ loginForm.addEventListener("submit", async function(e){
 cadastroForm.addEventListener("submit", async function(e){
   e.preventDefault();
 
-  // ✅ Adicionado .trim() para remover espaços extras
-  const email = document.getElementById("cadastroemail").value.trim();
+  const email = document.getElementById("cadastroemail").value;
   const senha = document.getElementById("cadastropass").value;
 
   if (!email || !senha) {
@@ -69,8 +68,7 @@ cadastroForm.addEventListener("submit", async function(e){
     return;
   }
 
-  // Mantendo a validação de senha 6 caracteres
-  if (senha.length < 6) {
+  if (senha.length < 4) {
     msgCadastro.textContent = "A senha deve ter pelo menos 6 caracteres!";
     msgCadastro.className = "mensagem erro";
     return;
@@ -86,6 +84,7 @@ cadastroForm.addEventListener("submit", async function(e){
     msgCadastro.className = "mensagem erro";
   }
 });
+
 
 onAuthStateChanged(auth, (user) => {
   if (user) {
