@@ -1,18 +1,16 @@
-// ⚡ Firebase Auth imports
+// tem q ter do firebase 
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/12.10.0/firebase-auth.js";
 
-// Inicializa o Auth
-const auth = getAuth();
 
-// Formulários e mensagens
+const auth = getAuth();
+// variavel de login e cad p pegar pelo id
 const loginForm = document.getElementById("loginForm");
 const cadastroForm = document.getElementById("cadastroForm");
-
+//msg se der algum erro
 const msgLogin = document.getElementById("msgLogin");
 const msgCadastro = document.getElementById("msgCadastro");
 
-// ===== FUNÇÕES PARA ALTERNAR TELAS =====
-// Expondo para o HTML poder chamar via onclick
+//fazer mudar a tela de login para cadastro c 1 botao
 window.mostrarCadastro = function() {
   loginForm.style.display = "none";
   cadastroForm.style.display = "block";
@@ -25,19 +23,18 @@ window.mostrarLogin = function() {
   msgCadastro.textContent = "";
 }
 
-// Mostrar login ao abrir
+// o login primeiro a abrir
 mostrarLogin();
 
-// ===== LOGIN =====
-loginForm.addEventListener("submit", async function(e){
+loginForm.addEventListener("submit", async function(e){  // vai enviar o formulário
   e.preventDefault();
 
-  const email = document.getElementById("loginuser").value.trim();
+  const email = document.getElementById("loginuser").value.trim(); //manda oq foi digitado 
   const senha = document.getElementById("loginpass").value;
 
-  if (!email || !senha) {
+  if (!email || !senha) { // !se tiver vazio 
     msgLogin.textContent = "Preencha todos os campos!";
-    msgLogin.className = "mensagem erro";
+    msgLogin.className = "Erro. Digite corretam";
     return;
   }
 
@@ -47,14 +44,17 @@ loginForm.addEventListener("submit", async function(e){
     msgLogin.className = "mensagem sucesso";
     console.log("Usuário logado:", userCredential.user);
 
+ 
   } catch (error) {
-    msgLogin.textContent = "Erro no login: " + error.message;
+    msgLogin.textContent = "Erro. Digite as informações corretamente!";
     msgLogin.className = "mensagem erro";
   }
+
 });
 
+
 // ===== CADASTRO =====
-cadastroForm.addEventListener("submit", async function(e){
+cadastroForm.addEventListener("submit", async function(e){ // td aq é da tela de cadastro 
   e.preventDefault();
 
   const email = document.getElementById("cadastroemail").value;
@@ -63,10 +63,10 @@ cadastroForm.addEventListener("submit", async function(e){
   if (!email || !senha) {
     msgCadastro.textContent = "Preencha todos os campos!";
     msgCadastro.className = "mensagem erro";
-    return;
+    return; // n ir p próximo se esse der errado
   }
 
-  if (senha.length < 4) {
+  if (senha.length < 6) {
     msgCadastro.textContent = "A senha deve ter pelo menos 6 caracteres!";
     msgCadastro.className = "mensagem erro";
     return;
@@ -74,11 +74,12 @@ cadastroForm.addEventListener("submit", async function(e){
 
   try {
     const userCredential = await createUserWithEmailAndPassword(auth, email, senha);
-    msgCadastro.textContent = "Cadastro realizado com sucesso!";
-    msgCadastro.className = "mensagem sucesso";
+    msgCadastro.textContent = "Cadastro realizado com sucesso!"; 
+    msgCadastro.className = "mensagem sucesso"; // style 
     console.log("Usuário criado:", userCredential.user);
-  } catch (error) {
-    msgCadastro.textContent = "Erro no cadastro: " + error.message;
+  } 
+  catch (error) {
+    msgCadastro.textContent = "Erro. Usuário já existe!";
     msgCadastro.className = "mensagem erro";
   }
 });
@@ -91,5 +92,4 @@ onAuthStateChanged(auth, (user) => {
     console.log("Nenhum usuário logado");
   }
 });
-
 
