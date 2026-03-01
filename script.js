@@ -34,7 +34,7 @@ loginForm.addEventListener("submit", async function(e){  // vai enviar o formul�
 
   if (!email || !senha) { // !se tiver vazio 
     msgLogin.textContent = "Preencha todos os campos!";
-    msgLogin.className = "Erro. Digite corretam";
+    msgLogin.className = "mensagem erro";
     return;
   }
 
@@ -46,9 +46,23 @@ loginForm.addEventListener("submit", async function(e){  // vai enviar o formul�
 
  
   } catch (error) {
-    msgLogin.textContent = "Erro. Digite as informações corretamente!";
-    msgLogin.className = "mensagem erro";
-  }
+
+    if (error.code === "auth/user-not-found") {
+      msgLogin.textContent = "Usuário não encontrado!";
+    } 
+    else if (error.code === "auth/wrong-password") {
+      msgLogin.textContent = "Senha incorreta!";
+    } 
+    else if (error.code === "auth/invalid-email") {
+      msgLogin.textContent = "Email inválido!";
+    } 
+    else {
+      msgLogin.textContent = "Erro ao fazer login.";
+    } 
+
+  msgLogin.className = "mensagem erro";
+}
+  
 
 });
 
@@ -78,9 +92,22 @@ cadastroForm.addEventListener("submit", async function(e){ // td aq é da tela d
     msgCadastro.className = "mensagem sucesso"; // style 
     console.log("Usuário criado:", userCredential.user);
   } 
+
   catch (error) {
-    msgCadastro.textContent = "Erro. Usuário já existe!";
-    msgCadastro.className = "mensagem erro";
+    if (error.code === "auth/email-already-in-use") {
+      msgCadastro.textContent = "Esse email já está cadastrado!";
+    }
+    else if (error.code === "auth/invalid-email") {
+    msgCadastro.textContent = "Email inválido!";
+    }
+    else if (error.code === "auth/weak-password") {
+      msgCadastro.textContent = "A senha é muito fraca!";
+    }
+    else {
+      msgCadastro.textContent = "Erro ao cadastrar usuário.";
+    }
+
+  msgCadastro.className = "mensagem erro";
   }
 });
 
